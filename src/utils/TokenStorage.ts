@@ -5,6 +5,7 @@ export interface Storage {
 }
 
 const STORAGE = localStorage;
+export const TokenKey = 'ACCESS_TOKEN';
 
 class TokenStorage implements Storage {
   setToken: (key: string, token: string) => void = (key, token) => {
@@ -12,8 +13,8 @@ class TokenStorage implements Storage {
   };
 
   getToken: (key: string) => string = key => {
-    const authToken = STORAGE.getItem(key);
-    return authToken as string;
+    const token = STORAGE.getItem(key);
+    return token as string;
   };
 
   removeToken: (key: string) => void = key => {
