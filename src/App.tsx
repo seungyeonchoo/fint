@@ -1,5 +1,7 @@
+import Router from './Router';
+
 function App() {
-  return <div>fint-project</div>;
+  return <Router />;
 }
 
 export default App;
