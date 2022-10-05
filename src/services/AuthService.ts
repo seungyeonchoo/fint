@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import TokenStorage, { TokenKey } from '../utils/TokenStorage';
 import instance from './AxiosInstance';
 
@@ -16,7 +17,7 @@ interface Auth {
 class AuthService implements Auth {
   login: (input: LoginInput) => void = async input => {
     const { data } = await instance.post('/login', input);
-    setToken(TokenKey, data);
+    setToken(TokenKey, data.accessToken);
   };
 
   logout: () => void = () => {
