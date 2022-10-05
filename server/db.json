@@ -1599,6 +1599,11 @@
       "last_login": "2022-02-17T19:00:51.802Z",
       "created_at": "2019-11-30T06:10:51.723Z",
       "updated_at": "2019-12-08T01:10:54.387Z"
+    },
+    {
+      "email": "admin@dco.com",
+      "password": "$2a$10$vezSOTECo2foiG/lIHIw/.Pg6qeFFaTy2vTFhkemKNYhpCk1RJ/9C",
+      "id": 101
     }
   ],
   "userSetting": [
