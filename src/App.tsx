@@ -1,3 +1,4 @@
+import AppRouter from './AppRouter';
 import Router from './Router';
 
 function App() {
