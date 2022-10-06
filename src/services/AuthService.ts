@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import TokenStorage, { TokenKey } from '../utils/TokenStorage';
 import instance from './AxiosInstance';
 
