@@ -1,8 +1,11 @@
 import { combineReducers } from 'redux';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
+import accountListSlice from './Slices/accountListSlice';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  accounts: accountListSlice,
+});
 
 const store = configureStore({
   reducer: rootReducer,
