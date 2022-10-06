@@ -1,5 +1,13 @@
+import Accounts from './components/Accounts';
+import Title from './components/Title';
+
 const AccountPage = () => {
-  return <div>account page</div>;
+  return (
+    <>
+      <Title />
+      <Accounts />
+    </>
+  );
 };
 
 export default AccountPage;
