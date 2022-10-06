@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
-import GetAccountsService, { Accounts } from '../../services/AccountService';
+import GetAccountsService from '../../services/AccountService';
+import { Accounts } from '../../types/types';
 
 const { getAccountList } = new GetAccountsService();
 
