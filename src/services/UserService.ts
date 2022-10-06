@@ -11,11 +11,11 @@ interface GetUsers {
 
 class GetUserService implements GetUsers {
   getUserList: (params?: object | undefined) => Promise<Array<Users>> = async (params?) => {
-    const { data } = await instance.get('/users', { params: { ...params, _embed: 'user' } });
+    const { data } = await instance.get('/users', { params: { ...params, _embed: 'accounts' } });
     return data;
   };
   getUserDetail: (id: string) => Promise<Users> = async id => {
-    const { data } = await instance.get(`/users/${id}`, { params: { _embed: 'user' } });
+    const { data } = await instance.get(`/users/${id}`, { params: { _embed: 'accounts' } });
     return data;
   };
   getUserSetting: () => Promise<any> = async () => {
