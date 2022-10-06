@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import AuthService from '../services/AuthService';
 import TokenStorage, { TokenKey } from '../utils/TokenStorage';
@@ -22,8 +22,12 @@ const useAuth = () => {
     e.preventDefault();
     login(input);
     setInput(initialInput);
-    getToken(TokenKey) && nav('/accounts');
+    nav('/accounts');
   };
+
+  useEffect(() => {
+    getToken(TokenKey) && nav('/accounts');
+  }, []);
 
   return { email, password, handleInputChange, handleLogin };
 };
