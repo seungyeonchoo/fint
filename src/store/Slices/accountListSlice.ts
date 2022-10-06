@@ -2,8 +2,10 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import GetAccountsService from '../../services/AccountService';
 import { Accounts } from '../../types/types';
+import TokenStorage, { TokenKey } from '../../utils/TokenStorage';
 
 const { getAccountList } = new GetAccountsService();
+const { removeToken } = new TokenStorage();
 
 export const getAccountListRequest = createAsyncThunk(
   'GET_ACCOUNT_LIST',
@@ -13,7 +15,8 @@ export const getAccountListRequest = createAsyncThunk(
       return list;
     } catch (e) {
       if (e instanceof AxiosError) {
-        return rejectWithValue(e.response?.data);
+        if (e.response?.data === 'jwt expired') removeToken(TokenKey);
+        else return rejectWithValue(e.response?.data);
       }
       throw e;
     }
