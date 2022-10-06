@@ -30,6 +30,7 @@ export interface Users {
   created_at: string;
   updated_at: string;
   accounts: Account[];
+  settings?: UserSettings;
 }
 
 interface Account {
@@ -60,6 +61,17 @@ interface User {
   address: string;
   detail_address: string;
   last_login: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface UserSettings {
+  id: number;
+  uuid: string;
+  allow_marketing_push: boolean;
+  allow_invest_push: boolean;
+  is_active: boolean;
+  is_staff: boolean;
   created_at: string;
   updated_at: string;
 }
