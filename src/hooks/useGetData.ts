@@ -8,15 +8,16 @@ const useGetData = (func: any, func2?: any) => {
   const dispatch = useDispatch<AppDispatch>();
   const nav = useNavigate();
   const { getToken } = new TokenStorage();
-  const { accounts, users } = useSelector((state: ReducerType) => state);
+  const { accounts, users, filters } = useSelector((state: ReducerType) => state);
+  const { params } = filters;
 
   useEffect(() => {
-    dispatch(func());
+    dispatch(func(params));
     if (func2) dispatch(func2());
     if (!getToken(TokenKey)) nav('/');
-  }, []);
+  }, [params]);
 
-  return { accounts, users };
+  return { accounts, users, filters };
 };
 
 export default useGetData;

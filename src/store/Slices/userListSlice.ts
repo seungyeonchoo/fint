@@ -9,9 +9,9 @@ const { removeToken } = new TokenStorage();
 
 export const getUserListRequest = createAsyncThunk(
   'GET_USER_LIST',
-  async (_, { rejectWithValue }) => {
+  async (params: object, { rejectWithValue }) => {
     try {
-      const list = await getUserList();
+      const list = await getUserList(params);
       return list;
     } catch (e) {
       if (e instanceof AxiosError) {
