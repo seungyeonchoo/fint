@@ -1,17 +1,19 @@
+import { List, Row } from './UserList';
+
 const Title = () => {
   return (
-    <li>
-      <div>고객명</div>
-      <div>이메일</div>
-      <div>보유계좌</div>
-      <div>성별</div>
-      <div>생년월일</div>
-      <div>휴대폰번호</div>
-      <div>최근접속</div>
-      <div>가입일</div>
-      <div>마케팅동의</div>
-      <div>활성화여부</div>
-    </li>
+    <List>
+      <Row rows={10}>고객명</Row>
+      <Row rows={10}>이메일</Row>
+      <Row rows={10}>보유계좌</Row>
+      <Row rows={10}>성별</Row>
+      <Row rows={10}>생년월일</Row>
+      <Row rows={10}>휴대폰번호</Row>
+      <Row rows={10}>최근접속</Row>
+      <Row rows={10}>가입일</Row>
+      <Row rows={10}>마케팅동의</Row>
+      <Row rows={10}>활성화여부</Row>
+    </List>
   );
 };
 

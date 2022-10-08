@@ -1,4 +1,5 @@
 import useGetData from '../../../hooks/useGetData';
+import styled from 'styled-components';
 import { getUserListRequest, getUserSettingRequest } from '../../../store/Slices/userListSlice';
 import Title from './Title';
 
@@ -11,18 +12,22 @@ const UserList = () => {
       <Title />
       {userList.map(user => {
         return (
-          <li key={user.id}>
-            <div>{user.name}</div>
-            <div>{user.email}</div>
-            <div>{user.accounts.length}</div>
-            <div>{user.gender_origin}</div>
-            <div>{user.birth_date}</div>
-            <div>{user.phone_number}</div>
-            <div>{user.last_login}</div>
-            <div>{user.created_at}</div>
-            {user.settings?.allow_marketing_push ? <div>동의</div> : <div>비동의</div>}
-            {user.settings?.is_active ? <div>활성화</div> : <div>비활성화</div>}
-          </li>
+          <List key={user.id}>
+            <Row rows={10}>{user.name}</Row>
+            <Row rows={10}>{user.email}</Row>
+            <Row rows={10}>{user.accounts.length}</Row>
+            <Row rows={10}>{user.gender_origin}</Row>
+            <Row rows={10}>{user.birth_date}</Row>
+            <Row rows={10}>{user.phone_number}</Row>
+            <Row rows={10}>{user.last_login}</Row>
+            <Row rows={10}>{user.created_at}</Row>
+            {user.settings?.allow_marketing_push ? (
+              <Row rows={10}>동의</Row>
+            ) : (
+              <Row rows={10}>비동의</Row>
+            )}
+            {user.settings?.is_active ? <Row rows={10}>활성화</Row> : <Row rows={10}>비활성화</Row>}
+          </List>
         );
       })}
     </ul>
@@ -30,3 +35,16 @@ const UserList = () => {
 };
 
 export default UserList;
+
+export interface StyleProps {
+  rows: number;
+}
+
+export const List = styled.li`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const Row = styled.div`
+  width: ${(props: StyleProps) => `calc(100% / ${props.rows})`};
+`;
