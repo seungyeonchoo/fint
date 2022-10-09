@@ -1,10 +1,13 @@
+import Filter from '../../components/Filter/Filter';
+import AccountListFilter from './components/AccountListFilter';
 import Accounts from './components/Accounts';
-import Title from './components/Title';
 
 const AccountPage = () => {
   return (
     <>
-      <Title />
+      <Filter>
+        <AccountListFilter />
+      </Filter>
       <Accounts />
     </>
   );

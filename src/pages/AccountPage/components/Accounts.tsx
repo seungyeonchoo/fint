@@ -1,20 +1,24 @@
 import useGetData from '../../../hooks/useGetData';
 import { getAccountListRequest } from '../../../store/Slices/accountListSlice';
-import { List, Row } from '../../UserPage/components/UserList';
+import { List, ListBox, Row } from '../../UserPage/components/UserList';
+import Title from './Title';
+import { BROKERS } from '../../../utils/constant';
+import handleAccountStatus from '../../../utils/handleAccountStatus';
 
 const Accounts = () => {
   const { accounts } = useGetData(getAccountListRequest);
   const { accountList } = accounts;
 
   return (
-    <ul>
+    <ListBox>
+      <Title />
       {accountList.map(account => {
         return (
           <List key={account.uuid}>
             <Row rows={9}>{account.user.name}</Row>
-            <Row rows={9}>{account.broker_id}</Row>
+            <Row rows={9}>{BROKERS[account.broker_id]}</Row>
             <Row rows={9}>{account.number}</Row>
-            <Row rows={9}>{account.status}</Row>
+            <Row rows={9}>{handleAccountStatus(account.status)}</Row>
             <Row rows={9}>{account.name}</Row>
             <Row rows={9}>{account.assets}</Row>
             <Row rows={9}>{account.payments}</Row>
@@ -23,7 +27,7 @@ const Accounts = () => {
           </List>
         );
       })}
-    </ul>
+    </ListBox>
   );
 };
 export default Accounts;
