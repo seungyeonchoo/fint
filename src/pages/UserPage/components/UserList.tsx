@@ -8,7 +8,7 @@ const UserList = () => {
   const { userList } = users;
 
   return (
-    <ul>
+    <ListBox>
       <Title />
       {userList.map(user => {
         return (
@@ -30,7 +30,7 @@ const UserList = () => {
           </List>
         );
       })}
-    </ul>
+    </ListBox>
   );
 };
 
@@ -47,4 +47,9 @@ export const List = styled.li`
 
 export const Row = styled.div`
   width: ${(props: StyleProps) => `calc(100% / ${props.rows})`};
+  text-align: center;
+`;
+
+export const ListBox = styled.ul`
+  padding: 0;
 `;
