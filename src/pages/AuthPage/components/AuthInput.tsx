@@ -1,7 +1,9 @@
 import useAuth from '../../../hooks/useAuth';
+import useInput from '../../../hooks/useInput';
 
 const AuthInput = () => {
-  const { email, password, handleInputChange, handleLogin } = useAuth();
+  const { handleLogin } = useAuth();
+  const { email, password, handleInputChange } = useInput();
 
   return (
     <form>
