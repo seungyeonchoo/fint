@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import AuthService from '../services/AuthService';
 import TokenStorage, { TokenKey } from '../utils/TokenStorage';
+import useInput from './useInput';
 
 const useAuth = () => {
   const { login, logout } = new AuthService();
-  const initialInput = { email: '', password: '' };
-  const [input, setInput] = useState(initialInput);
-  const { email, password } = input;
-  const nav = useNavigate();
+  const { input, initialInput, setInput } = useInput();
   const { getToken } = new TokenStorage();
+  const token = getToken(TokenKey);
+  const nav = useNavigate();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-    setInput(prev => {
-      return { ...prev, [name]: value };
-    });
-  };
-
-  const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLogin: React.MouseEventHandler<HTMLButtonElement> = e => {
     e.preventDefault();
     login(input);
     setInput(initialInput);
@@ -26,10 +19,10 @@ const useAuth = () => {
   };
 
   useEffect(() => {
-    getToken(TokenKey) && nav('/accounts');
-  }, []);
+    token && nav('/accounts');
+  }, [token]);
 
-  return { email, password, handleInputChange, handleLogin };
+  return { handleLogin };
 };
 
 export default useAuth;
