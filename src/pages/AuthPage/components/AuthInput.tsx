@@ -1,9 +1,7 @@
 import useAuth from '../../../hooks/useAuth';
-import useInput from '../../../hooks/useInput';
 
 const AuthInput = () => {
-  const { handleLogin } = useAuth();
-  const { email, password, handleInputChange } = useInput();
+  const { email, password, handleAuthInputChange, handleLogin } = useAuth();
 
   return (
     <form>
@@ -14,7 +12,7 @@ const AuthInput = () => {
           type="email"
           value={email}
           placeholder="이메일을 입력해 주세요"
-          onChange={handleInputChange}
+          onChange={handleAuthInputChange}
         />
       </label>
       <label>
@@ -24,7 +22,7 @@ const AuthInput = () => {
           type="password"
           value={password}
           placeholder="비밀번호를 입력해 주세요"
-          onChange={handleInputChange}
+          onChange={handleAuthInputChange}
         />
       </label>
       <button onClick={handleLogin}>로그인</button>
