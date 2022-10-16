@@ -1,8 +1,9 @@
 import SearchForm from './SearchForm';
 import { ReactNode } from 'react';
 
-interface Props {
-  children: ReactNode;
+export interface Props {
+  children?: ReactNode;
+  getList?: any;
 }
 
 const Filter = ({ children }: Props) => {

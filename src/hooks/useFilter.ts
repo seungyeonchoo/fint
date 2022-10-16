@@ -10,16 +10,11 @@ const useFilter = () => {
   const handleFilter: React.ChangeEventHandler<HTMLSelectElement> = e => {
     const { name, value } = e.target;
     value === 'null'
-      ? dispatch(updateParam({ ...params, [name]: null }))
-      : dispatch(updateParam({ ...params, [name]: value }));
+      ? dispatch(updateParam({ ...params, [name]: null, _page: '1' }))
+      : dispatch(updateParam({ ...params, [name]: value, _page: '1' }));
   };
 
-  const handleSearch: React.MouseEventHandler<HTMLButtonElement> = e => {
-    const { name, value } = e.target as HTMLButtonElement;
-    dispatch(updateParam({ ...params, [name]: value }));
-  };
-
-  return { handleFilter, handleSearch };
+  return { handleFilter };
 };
 
 export default useFilter;
