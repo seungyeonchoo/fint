@@ -22,7 +22,7 @@ class GetUserService implements GetUsers {
   };
   getUserSetting: (params?: object) => Promise<Array<UserSettings>> = async params => {
     const { data } = await instance.get(`/usersetting`, {
-      params: { ...params, _page: 1, _limit: 10 },
+      params: { ...params },
     });
     return data;
   };

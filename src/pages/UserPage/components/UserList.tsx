@@ -4,6 +4,7 @@ import { getUserListRequest, getUserSettingRequest } from '../../../store/Slices
 import Title from './Title';
 import handleDateForm from '../../../utils/handleDate';
 import { Users, UserSettings } from '../../../types/types';
+import handleGender from '../../../utils/handleGender';
 
 const UserList = () => {
   const { users } = useGetData(getUserListRequest, getUserSettingRequest);
@@ -20,7 +21,7 @@ const UserList = () => {
               <Row rows={10}>{userWithSetting[0]?.name}</Row>
               <Row rows={10}>{userWithSetting[0]?.email}</Row>
               <Row rows={10}>{userWithSetting[0]?.accounts.length}</Row>
-              <Row rows={10}>{userWithSetting[0]?.gender_origin}</Row>
+              <Row rows={10}>{handleGender(userWithSetting[0]?.gender_origin)}</Row>
               <Row rows={10}>{handleDateForm(userWithSetting[0]?.birth_date)}</Row>
               <Row rows={10}>{userWithSetting[0]?.phone_number}</Row>
               <Row rows={10}>{handleDateForm(userWithSetting[0]?.last_login)}</Row>
