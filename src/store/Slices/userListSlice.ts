@@ -40,10 +40,11 @@ export const getUserSettingRequest = createAsyncThunk(
 );
 
 const initialAccountList: Users[] = [];
+const initialSettings: UserSettings[] = [];
 
 const userListSlice = createSlice({
   name: 'accounts',
-  initialState: { isLoading: false, userList: initialAccountList },
+  initialState: { isLoading: false, userList: initialAccountList, userSettings: initialSettings },
   reducers: {},
   extraReducers: builder => {
     builder.addCase(getUserListRequest.pending, state => {
@@ -57,14 +58,18 @@ const userListSlice = createSlice({
       state.isLoading = false;
       console.error(action.payload);
     });
+    // builder.addCase(getUserSettingRequest.fulfilled, (state, action) => {
+    //   const newList = state.userList.map((user, idx) => {
+    //     const userSetting = action.payload.filter((setting: UserSettings) => {
+    //       return setting.uuid === user.uuid;
+    //     });
+    //     return { ...user, settings: { ...userSetting[0] } };
+    //   });
+    //   state.userList = newList.filter(el => el.settings.uuid);
+    // });
+
     builder.addCase(getUserSettingRequest.fulfilled, (state, action) => {
-      const newList = state.userList.map((user, idx) => {
-        const userSetting = action.payload.filter((setting: UserSettings) => {
-          return setting.uuid === user.uuid;
-        });
-        return { ...user, settings: { ...userSetting[0] } };
-      });
-      state.userList = newList;
+      state.userSettings = action.payload;
     });
   },
 });

@@ -2,32 +2,37 @@ import useGetData from '../../../hooks/useGetData';
 import styled from 'styled-components';
 import { getUserListRequest, getUserSettingRequest } from '../../../store/Slices/userListSlice';
 import Title from './Title';
+import handleDateForm from '../../../utils/handleDate';
+import { Users, UserSettings } from '../../../types/types';
 
 const UserList = () => {
   const { users } = useGetData(getUserListRequest, getUserSettingRequest);
-  const { userList } = users;
+  const { userList, userSettings } = users;
 
   return (
     <ListBox>
       <Title />
-      {userList.map(user => {
+      {userSettings.map((setting: UserSettings) => {
+        const userWithSetting = userList.filter((user: Users) => user.uuid === setting.uuid);
         return (
-          <List key={user.id}>
-            <Row rows={10}>{user.name}</Row>
-            <Row rows={10}>{user.email}</Row>
-            <Row rows={10}>{user.accounts.length}</Row>
-            <Row rows={10}>{user.gender_origin}</Row>
-            <Row rows={10}>{user.birth_date}</Row>
-            <Row rows={10}>{user.phone_number}</Row>
-            <Row rows={10}>{user.last_login}</Row>
-            <Row rows={10}>{user.created_at}</Row>
-            {user.settings?.allow_marketing_push ? (
-              <Row rows={10}>동의</Row>
-            ) : (
-              <Row rows={10}>비동의</Row>
-            )}
-            {user.settings?.is_active ? <Row rows={10}>활성화</Row> : <Row rows={10}>비활성화</Row>}
-          </List>
+          userWithSetting[0] && (
+            <List key={setting.uuid}>
+              <Row rows={10}>{userWithSetting[0]?.name}</Row>
+              <Row rows={10}>{userWithSetting[0]?.email}</Row>
+              <Row rows={10}>{userWithSetting[0]?.accounts.length}</Row>
+              <Row rows={10}>{userWithSetting[0]?.gender_origin}</Row>
+              <Row rows={10}>{handleDateForm(userWithSetting[0]?.birth_date)}</Row>
+              <Row rows={10}>{userWithSetting[0]?.phone_number}</Row>
+              <Row rows={10}>{handleDateForm(userWithSetting[0]?.last_login)}</Row>
+              <Row rows={10}>{handleDateForm(userWithSetting[0]?.created_at)}</Row>
+              {setting.allow_marketing_push ? (
+                <Row rows={10}>동의</Row>
+              ) : (
+                <Row rows={10}>비동의</Row>
+              )}
+              {setting.is_active ? <Row rows={10}>활성화</Row> : <Row rows={10}>비활성화</Row>}
+            </List>
+          )
         );
       })}
     </ListBox>
