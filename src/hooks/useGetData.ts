@@ -13,7 +13,7 @@ const useGetData = (func: any, func2?: any) => {
 
   useEffect(() => {
     dispatch(func(params));
-    if (func2) dispatch(func2());
+    if (func2) dispatch(func2(params));
     if (!getToken(TokenKey)) nav('/');
   }, [params]);
 

@@ -25,9 +25,9 @@ export const getUserListRequest = createAsyncThunk(
 
 export const getUserSettingRequest = createAsyncThunk(
   'GET_USER_SETTING',
-  async (_, { rejectWithValue }) => {
+  async (params: object, { rejectWithValue }) => {
     try {
-      const list = await getUserSetting();
+      const list = await getUserSetting(params);
       return list;
     } catch (e) {
       if (e instanceof AxiosError) {
