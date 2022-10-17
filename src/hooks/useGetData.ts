@@ -17,7 +17,7 @@ const useGetData = (func: any, func2?: any) => {
     if (!getToken(TokenKey)) nav('/');
   }, [params]);
 
-  return { accounts, users, filters };
+  return { accounts, users, filters, nav };
 };
 
 export default useGetData;

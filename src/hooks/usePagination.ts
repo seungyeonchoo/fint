@@ -6,6 +6,8 @@ import { updateParam } from '../store/Slices/filterSilce';
 const usePaginations = (getList: any) => {
   const { params } = useSelector((state: ReducerType) => state.filters);
   const [pageList, setPageList] = useState<Array<string>>([]);
+  const pages = pageList.slice(Number(params._page) - 1, Number(params._page) + 4);
+  const pageNum = Number(params._page);
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -27,7 +29,7 @@ const usePaginations = (getList: any) => {
     getListRequest();
   }, [params]);
 
-  return { pageList, handlePage };
+  return { pageList, pages, pageNum, handlePage };
 };
 
 export default usePaginations;
