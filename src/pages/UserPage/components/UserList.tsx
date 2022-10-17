@@ -7,7 +7,7 @@ import { Users, UserSettings } from '../../../types/types';
 import handleGender from '../../../utils/handleGender';
 
 const UserList = () => {
-  const { users } = useGetData(getUserListRequest, getUserSettingRequest);
+  const { users, nav } = useGetData(getUserListRequest, getUserSettingRequest);
   const { userList, userSettings } = users;
 
   return (
@@ -18,7 +18,9 @@ const UserList = () => {
         return (
           userWithSetting[0] && (
             <List key={setting.uuid}>
-              <Row rows={10}>{userWithSetting[0]?.name}</Row>
+              <Row rows={10} onClick={() => nav(`/users/${userWithSetting[0]?.id}`)}>
+                {userWithSetting[0]?.name}
+              </Row>
               <Row rows={10}>{userWithSetting[0]?.email}</Row>
               <Row rows={10}>{userWithSetting[0]?.accounts.length}</Row>
               <Row rows={10}>{handleGender(userWithSetting[0]?.gender_origin)}</Row>
@@ -26,12 +28,8 @@ const UserList = () => {
               <Row rows={10}>{userWithSetting[0]?.phone_number}</Row>
               <Row rows={10}>{handleDateForm(userWithSetting[0]?.last_login)}</Row>
               <Row rows={10}>{handleDateForm(userWithSetting[0]?.created_at)}</Row>
-              {setting.allow_marketing_push ? (
-                <Row rows={10}>동의</Row>
-              ) : (
-                <Row rows={10}>비동의</Row>
-              )}
-              {setting.is_active ? <Row rows={10}>활성화</Row> : <Row rows={10}>비활성화</Row>}
+              <Row rows={10}>{setting.allow_marketing_push ? '동의' : '비동의'}</Row>
+              <Row rows={10}>{setting.is_active ? '활성화' : '비활성화'}</Row>
             </List>
           )
         );

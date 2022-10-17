@@ -8,7 +8,7 @@ import handleDateForm from '../../../utils/handleDate';
 import addComma from '../../../utils/addComma';
 
 const Accounts = () => {
-  const { accounts } = useGetData(getAccountListRequest);
+  const { accounts, nav } = useGetData(getAccountListRequest);
   const { accountList } = accounts;
 
   return (
@@ -17,9 +17,13 @@ const Accounts = () => {
       {accountList.map(account => {
         return (
           <List key={account.uuid}>
-            <Row rows={9}>{account.user.name}</Row>
+            <Row rows={9} onClick={() => nav(`/users/${account.userId}`)}>
+              {account.user.name}
+            </Row>
             <Row rows={9}>{BROKERS[account.broker_id]}</Row>
-            <Row rows={9}>{account.number}</Row>
+            <Row rows={9} onClick={() => nav(`/accounts/${account.number}`)}>
+              {account.number}
+            </Row>
             <Row rows={9}>{handleAccountStatus(account.status)}</Row>
             <Row rows={9}>{account.name}</Row>
             <Row rows={9}>{addComma(account.assets)}원</Row>
