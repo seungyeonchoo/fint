@@ -1,12 +1,13 @@
 import useFilter from '../../../hooks/useFilter';
 import { ACCOUNT_STATUS, BROKERS } from '../../../utils/constant';
+import styled from 'styled-components';
 
 const AccountListFilter = () => {
   const { handleFilter } = useFilter();
   const status = ACCOUNT_STATUS;
   const brokers = BROKERS;
   return (
-    <>
+    <FilterWrapper>
       <select onChange={handleFilter} name="is_active">
         <option value="null">활성화 여부</option>
         <option value="true">활성화</option>
@@ -28,8 +29,12 @@ const AccountListFilter = () => {
           </option>
         ))}
       </select>
-    </>
+    </FilterWrapper>
   );
 };
 
 export default AccountListFilter;
+
+export const FilterWrapper = styled.div`
+  display: flex;
+`;

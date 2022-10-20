@@ -1,9 +1,10 @@
 import useFilter from '../../../hooks/useFilter';
+import { FilterWrapper } from '../../AccountPage/components/AccountListFilter';
 
 const UserListFilter = () => {
   const { handleFilter } = useFilter();
   return (
-    <>
+    <FilterWrapper>
       <select onChange={handleFilter} name="is_active">
         <option value="null">활성화 여부</option>
         <option value="true">활성화</option>
@@ -14,7 +15,7 @@ const UserListFilter = () => {
         <option value="true">임직원</option>
         <option value="false">일반회원</option>
       </select>
-    </>
+    </FilterWrapper>
   );
 };
 
