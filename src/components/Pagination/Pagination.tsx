@@ -6,7 +6,7 @@ const Pagination = ({ getList }: Props) => {
 
   return (
     <>
-      <button name="_page" value={pageNum - 1} onClick={handlePage}>
+      <button name="_page" value={pageNum - 4} onClick={handlePage}>
         이전
       </button>
       {pages.map(page => (
@@ -14,7 +14,7 @@ const Pagination = ({ getList }: Props) => {
           {page}
         </button>
       ))}
-      <button name="_page" value={pageNum + 1} onClick={handlePage}>
+      <button name="_page" value={pageNum + 4} onClick={handlePage}>
         다음
       </button>
     </>
